@@ -1,0 +1,40 @@
+<div class="filtros-container">
+  <h3>Buscar características</h3>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="filterNome">Nome:</label>
+      <input type="text" id="filterNome" class="form-control"
+             [(ngModel)]="nomeBuscado" (input)="aplicarFiltros()"
+             placeholder="Buscar por nome">
+    </div>
+
+    <div class="form-group">
+      <label for="filterNacionalidade">Nacionalidade:</label>
+      <select id="filterNacionalidade" class="form-control" [(ngModel)]="nacionalidadeSelecionada" (change)="aplicarFiltros()">
+        <option value="">Todas</option>
+        <option *ngFor="let nac of nacionalidadesDisponiveis" [value]="nac">{{ nac }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="filterPosicao">Posição:</label>
+      <select id="filterPosicao" class="form-control" [(ngModel)]="posicaoSelecionada" (change)="aplicarFiltros()">
+        <option value="">Todas</option>
+        <option *ngFor="let pos of posicoesDisponiveis" [value]="pos">{{ pos }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="filterClube">Clube:</label>
+      <select id="filterClube" class="form-control" [(ngModel)]="clubeSelecionado" (change)="aplicarFiltros()">
+        <option value="">Todos</option>
+        <option *ngFor="let clb of clubesDisponiveis" [value]="clb">{{ clb }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="buttons-row">
+    <button class="btn btn-secondary" (click)="limparFiltros()">Limpar Filtros</button>
+  </div>
+</div>

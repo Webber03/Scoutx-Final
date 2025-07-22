@@ -1,0 +1,9 @@
+input.form-control {
+    height: 45px;
+    border-radius: 10px;
+  }
+  
+  button.btn-danger {
+    height: auto;
+  }
+  

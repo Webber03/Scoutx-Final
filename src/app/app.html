@@ -1,0 +1,15 @@
+<div class="main-layout-container">
+  <ng-container *ngIf="showSidebarAndToggle">
+    <button class="sidebar-toggle-btn" (click)="toggleSidebar()" *ngIf="!isSidebarOpen">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <app-sidebar [class.sidebar-open]="isSidebarOpen"></app-sidebar>
+
+    <div class="sidebar-overlay" *ngIf="isSidebarOpen" (click)="toggleSidebar()"></div>
+  </ng-container>
+
+  <div class="content-area" [class.content-shifted]="isSidebarOpen && showSidebarAndToggle">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="sidebar-container">
+  <div class="sidebar-header">
+    <img src="logo-scoutx.png" alt="ScoutX Logo" class="sidebar-logo">
+    <h2 class="app-title">ScoutX</h2>
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul>
+      <li>
+        <a routerLink="/home" routerLinkActive="active-link">
+          <i class="fas fa-home"></i> Dashboard
+        </a>
+      </li>
+      <li>
+        <a routerLink="/jogadores" routerLinkActive="active-link">
+          <i class="fas fa-users"></i> Jogadores
+        </a>
+      </li>
+      <li>
+        <a routerLink="/times" routerLinkActive="active-link">
+          <i class="fas fa-shield-alt"></i> Times
+        </a>
+      </li>
+      <li>
+        <a routerLink="/configuracoes" routerLinkActive="active-link">
+          <i class="fas fa-cog"></i> Configurações
+        </a>
+      </li>
+      </ul>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="btn-logout" (click)="deslogar()">
+      <i class="fas fa-sign-out-alt"></i> Deslogar
+    </button>
+  </div>
+</div>

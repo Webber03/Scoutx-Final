@@ -1,0 +1,44 @@
+<!-- Login.html -->
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="row w-75 shadow rounded overflow-hidden">
+      <div class="col-md-6 d-none d-md-block p-0">
+        <img src="login.png" alt="Login Image" class="img-fluid h-100" style="object-fit: cover;">
+      </div>
+  
+      <div class="col-md-6 bg-white p-5">
+        
+        <h2 class="fw-bold mt-4" style="text-align: center; margin-bottom: 25px;">ScoutX</h2>
+        <p class="text-muted">Bem-vindo de volta, você fez falta!</p>
+  
+        <div class="form-group mb-3">
+          <input type="text" class="form-control" [(ngModel)]="username" placeholder="Login">
+        </div>
+        <div class="form-group mb-3">
+          <input type="password" class="form-control" [(ngModel)]="password" placeholder="Senha">
+        </div>
+  
+        <!-- NOVO: Exibe a mensagem de erro se ela existir -->
+        <div *ngIf="mensagemErro" class="alert alert-danger text-center mb-3" role="alert">
+          {{ mensagemErro }}
+        </div>
+  
+        <div class="text-end mb-3">
+          <a href="#" class="text-muted">Recuperar senha</a>
+        </div>
+  
+        <button class="btn btn-danger w-100 mb-3" (click)="login()">Login</button>
+  
+        <div class="text-center text-muted mb-2">Ou continue com </div>
+            <div class="d-flex justify-content-center gap-3">
+            <button></button>
+            <button></button>   
+            <button></button>
+          </div>
+            <div class="text-center text-muted mt-3">Não tem uma conta?  <button (click)="cadastro()">Cadastre-se</button></div>
+          <div class="d-flex justify-content-center gap-3">
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  <cadastro-modal *ngIf="mostrarModalCadastro" [fechar]="fecharModalCadastro.bind(this)"></cadastro-modal>

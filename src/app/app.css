@@ -1,0 +1,116 @@
+/* src/app/app.component.css */
+
+/* Garantir que o html e body ocupem 100% da altura para o layout flex */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho */
+  overflow-x: hidden; /* Evita rolagem horizontal indesejada durante a transição */
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main-layout-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #070707;
+  position: relative; /* Para posicionar o botão de toggle e o overlay */
+}
+
+/* Estilo para o botão de abrir/fechar a sidebar */
+.sidebar-toggle-btn {
+  position: fixed; /* Fixa o botão na tela */
+  top: 20px;
+  left: 20px;
+  z-index: 1001; /* Acima da sidebar e do overlay */
+  background-color: #1a1a1a;
+  color: #00e6e6; /* Cor neon */
+  border: 1px solid #00e6e6;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 230, 230, 0.4);
+}
+
+.sidebar-toggle-btn:hover {
+  background-color: #00e6e6;
+  color: #070707;
+  box-shadow: 0 0 15px rgba(0, 230, 230, 0.7);
+}
+
+
+/* Estilos para a Sidebar em modo suspenso */
+app-sidebar {
+  position: fixed; /* Fixa a sidebar fora da tela */
+  top: 0;
+  left: 0; /* Começa fora da tela à esquerda */
+  width: 250px; /* Largura da sidebar */
+  height: 100%;
+  z-index: 1000; /* Acima do conteúdo principal */
+  transform: translateX(-100%); /* Esconde a sidebar completamente para a esquerda */
+  transition: transform 0.3s ease-in-out; /* Animação suave */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Sombra para dar profundidade */
+}
+
+app-sidebar.sidebar-open {
+  transform: translateX(0); /* Move a sidebar para a posição visível */
+}
+
+/* Overlay que aparece quando a sidebar está aberta */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente escuro */
+  z-index: 999; /* Abaixo da sidebar, acima do conteúdo */
+  cursor: pointer;
+  opacity: 0; /* Começa invisível */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar-overlay[hidden] { /* Para *ngIf (mas hidden é removido ao mostrar) */
+  display: none;
+}
+
+.sidebar-overlay { /* Quando *ngIf é true, essa classe aplica a opacidade */
+  opacity: 1;
+}
+
+/* Estilos para a área de conteúdo */
+.content-area {
+  flex-grow: 1;
+  padding: 20px; /* Adicione um padding aqui para o conteúdo não ficar colado */
+  margin-left: 0; /* Começa sem margin */
+  transition: margin-left 0.3s ease-in-out; /* Animação para o shift */
+  overflow-y: auto; /* Permite scroll no conteúdo */
+}
+
+/* Opcional: Se você quiser que o conteúdo "empurre" para o lado quando a sidebar abre */
+/* Remova esta parte se preferir que a sidebar apenas "sobreponha" o conteúdo */
+.content-area.content-shifted {
+  margin-left: 250px; /* Mesma largura da sidebar */
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+  .sidebar-toggle-btn {
+    top: 15px;
+    left: 15px;
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+
+  /* Em telas menores, o conteúdo não é empurrado, a sidebar apenas sobrepõe */
+  .content-area.content-shifted {
+    margin-left: 0;
+  }
+}

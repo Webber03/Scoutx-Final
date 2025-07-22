@@ -1,0 +1,31 @@
+<div class="container-scout">
+  <h1>SCOUTX</h1>
+
+  <app-jogador-filtros
+    [nacionalidadesDisponiveis]="nacionalidadesDisponiveis"
+    [posicoesDisponiveis]="posicoesDisponiveis"
+    [clubesDisponiveis]="clubesDisponiveis"
+    (filtrosAplicados)="aplicarFiltros($event)"
+  ></app-jogador-filtros>
+
+  <div *ngIf="jogadores.length === 0" class="no-results-message">
+    Nenhum jogador encontrado com os filtros aplicados.
+  </div>
+
+  <div class="cards-grid">
+    <div class="jogador-card" *ngFor="let jogador of jogadores" (click)="openDetalhesModal(jogador)">
+      <img [src]="jogador.foto || 'assets/placeholder-jogador.png'" alt="Foto de {{ jogador.nome }}" class="jogador-foto">
+      <div class="jogador-detalhes">
+        <span class="jogador-posicao">{{ jogador.posicao }}</span>
+        <h3 class="jogador-nome">{{ jogador.nome }}</h3>
+      </div>
+      <span *ngIf="jogador.numeroCamisa" class="jogador-numero">{{ jogador.numeroCamisa }}</span>
+    </div>
+  </div>
+
+  <app-jogador-detalhes
+    *ngIf="showDetalhesModal"
+    [jogador]="jogadorSelecionado"
+    (close)="closeDetalhesModal()">
+  </app-jogador-detalhes>
+</div>

@@ -1,0 +1,51 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close-btn" (click)="closeModal()">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <ng-container *ngIf="jogador">
+      <div class="jogador-header">
+        <img [src]="jogador.foto || 'assets/placeholder-jogador.png'" alt="Foto do Jogador" class="jogador-foto-modal">
+        <div class="jogador-info-principal">
+          <h2 class="jogador-nome-modal">{{ jogador.nome }}</h2>
+          <p class="jogador-posicao-modal">Posição: {{ jogador.posicao }}</p>
+          <p class="jogador-clube-modal">Clube: {{ jogador.clube }}</p>
+          <p *ngIf="jogador.nacionalidade" class="jogador-nacionalidade-modal">Nacionalidade: {{ jogador.nacionalidade }}</p>
+          <p *ngIf="jogador.numeroCamisa" class="jogador-numero-camisa-modal">Camisa: {{ jogador.numeroCamisa }}</p>
+          <p *ngIf="jogador.idade" class="jogador-idade-modal">Idade: {{ jogador.idade }} anos</p>
+        </div>
+      </div>
+
+      <div class="jogador-stats">
+        <h3>Estatísticas Principais</h3>
+        <ul>
+          <ng-container *ngIf="jogador.posicao === 'Atacante' || jogador.posicao === 'Meio-campo'">
+            <li *ngIf="jogador.gols !== undefined && jogador.gols !== null">Gols: <span>{{ jogador.gols }}</span></li>
+            <li *ngIf="jogador.assistencias !== undefined && jogador.assistencias !== null">Assistências: <span>{{ jogador.assistencias }}</span></li>
+          </ng-container>
+
+          <ng-container *ngIf="jogador.posicao === 'Zagueiro' || jogador.posicao === 'Volante'">
+            <li *ngIf="jogador.mediaCortes !== undefined && jogador.mediaCortes !== null">Média de Cortes: <span>{{ jogador.mediaCortes | number:'1.1-1' }}</span></li>
+            <li *ngIf="jogador.mediaInterceptacoes !== undefined && jogador.mediaInterceptacoes !== null">Média de Interceptações: <span>{{ jogador.mediaInterceptacoes | number:'1.1-1' }}</span></li>
+          </ng-container>
+
+          <ng-container *ngIf="jogador.posicao === 'Goleiro'">
+            <li *ngIf="jogador.jogosSemSofrerGol !== undefined && jogador.jogosSemSofrerGol !== null">Jogos S/ Sofrer Gol: <span>{{ jogador.jogosSemSofrerGol }}</span></li>
+            <li *ngIf="jogador.mediaDefesas !== undefined && jogador.mediaDefesas !== null">Média de Defesas: <span>{{ jogador.mediaDefesas | number:'1.1-1' }}</span></li>
+          </ng-container>
+
+          <li *ngIf="!jogador.gols && !jogador.assistencias && !jogador.mediaCortes && !jogador.mediaInterceptacoes && !jogador.jogosSemSofrerGol && !jogador.mediaDefesas">
+            Sem estatísticas detalhadas disponíveis para esta posição.
+          </li>
+        </ul>
+      </div> <div *ngIf="jogador.mapaCalor" class="jogador-mapa-calor">
+        <img [src]="jogador.mapaCalor" alt="Mapa de Calor de {{ jogador.nome }}" class="mapa-calor-img">
+        <p class="mapa-calor-info">Representação visual da área de atuação do jogador em campo.</p>
+      </div>
+      </ng-container>
+    <div *ngIf="!jogador" class="no-data-message">
+      Nenhum dado de jogador disponível.
+    </div>
+  </div>
+</div>

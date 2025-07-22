@@ -1,0 +1,120 @@
+/* src/app/components/sidebar/sidebar.component.css */
+.sidebar-container {
+  width: 240px; /* Largura fixa da sidebar */
+  min-height: 100vh; /* Ocupa toda a altura da viewport */
+  background-color: #0d0d0d; /* Fundo escuro, levemente diferente do main */
+  color: #cccccc; /* Cor de texto padrão */
+  display: flex;
+  flex-direction: column; /* Itens empilhados verticalmente */
+  padding: 20px 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); /* Sombra à direita */
+  border-right: 1px solid #1a1a1a; /* Borda sutil à direita */
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.sidebar-logo {
+  width: 80px; /* Tamanho do logo */
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 5px rgba(0, 230, 230, 0.4)); /* Brilho no logo */
+}
+
+.app-title {
+  color: #00e6e6; /* Ciano/azul neon para o título do app */
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px rgba(0, 230, 230, 0.4);
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; /* Permite que a navegação ocupe o espaço restante */
+}
+
+.sidebar-nav li {
+  margin-bottom: 5px;
+}
+
+.sidebar-nav a {
+  display: flex; /* Para alinhar ícone e texto */
+  align-items: center;
+  padding: 12px 25px;
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: background-color 0.2s ease, color 0.2s ease, border-left 0.2s ease;
+  border-left: 4px solid transparent; /* Borda para indicar ativo ou hover */
+}
+
+.sidebar-nav a i { /* Estilo para os ícones do Font Awesome */
+  margin-right: 15px;
+  font-size: 1.2em;
+  color: #888; /* Cor padrão do ícone */
+  transition: color 0.2s ease;
+}
+
+.sidebar-nav a:hover {
+  background-color: #1a1a1a; /* Fundo mais escuro no hover */
+  color: #00e6e6; /* Texto neon no hover */
+  border-left-color: #00e6e6; /* Borda neon no hover */
+}
+
+.sidebar-nav a:hover i {
+  color: #00e6e6; /* Ícone neon no hover */
+}
+
+.sidebar-nav a.active-link { /* Estilo para o link ativo */
+  background-color: #1a1a1a;
+  color: #00ffff; /* Mais vibrante para o ativo */
+  border-left-color: #00ffff; /* Borda mais vibrante para o ativo */
+  font-weight: bold;
+  box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.2); /* Sombra interna sutil */
+}
+
+.sidebar-nav a.active-link i {
+  color: #00ffff; /* Ícone vibrante para o ativo */
+}
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid #1a1a1a; /* Linha divisória */
+  margin-top: auto; /* Empurra para a parte inferior */
+  text-align: center;
+}
+
+.btn-logout {
+  background-color: #333; /* Fundo do botão deslogar */
+  color: #ff4d4d; /* Texto em vermelho neon */
+  border: 1px solid #ff4d4d;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Ocupa a largura total do footer */
+}
+
+.btn-logout i {
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+
+.btn-logout:hover {
+  background-color: #ff4d4d; /* Fundo vermelho no hover */
+  color: #0d0d0d; /* Texto escuro */
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.7); /* Brilho vermelho no hover */
+}

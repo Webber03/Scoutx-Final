@@ -1,0 +1,139 @@
+/* src/app/components/jogador-list/jogador-list.css */
+
+.container-scout {
+  padding: 20px;
+  background-color: #0d0d0d; /* Fundo escuro */
+  min-height: calc(100vh - 60px); /* Ajuste conforme a altura do seu header/footer */
+  color: #f0f0f0;
+}
+
+h1 {
+  color: #00ffff; /* Azul neon para o título */
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 3em;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+/* Estilos para o grid de cards de jogadores */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Colunas responsivas */
+  gap: 25px; /* Espaço entre os cards */
+  padding: 20px 0;
+}
+
+.jogador-card {
+  background-color: #1a1a1a; /* Fundo mais escuro para o card */
+  border: 2px solid #00e6e6; /* Borda neon sólida*/
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); /* Brilho neon suave*/
+  position: relative;
+  overflow: hidden; /* Garante que o brilho da foto não vaze */
+  cursor: pointer;
+}
+
+.jogador-card:hover {
+  transform: translateY(-5px); /* Efeito de "levantar" no hover */
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4); /* Brilho mais intenso no hover */
+  border-color: #00ffff; /* Borda mais clara no hover */
+}
+
+.jogador-foto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* Foto redonda */
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #00ffff; /* Borda neon na foto*/
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); /* Brilho na foto */
+}
+
+.jogador-detalhes {
+  flex-grow: 1; /* Permite que os detalhes ocupem o espaço disponível */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.jogador-posicao {
+  background-color: rgba(0, 204, 204, 0.2); /* Fundo sutil para a posição */
+  color: #00ffff; /* Cor neon para o texto da posição */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.85em;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.jogador-nome {
+  font-size: 1.4em;
+  color: #f0f0f0;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.jogador-numero {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #00e6e6; /* Fundo neon para o número*/
+  color: #1a1a1a; /* Texto escuro no fundo neon */
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.7); /* Brilho neon no número*/
+}
+
+.no-results-message {
+  text-align: center;
+  color: #ff4d4d; /* Cor de erro */
+  font-size: 1.2em;
+  padding: 50px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+  }
+
+  .jogador-card {
+    padding: 15px;
+  }
+
+  .jogador-foto {
+    width: 80px;
+    height: 80px;
+  }
+
+  .jogador-nome {
+    font-size: 1.2em;
+  }
+
+  .jogador-posicao {
+    font-size: 0.8em;
+  }
+
+  .jogador-numero {
+    font-size: 0.9em;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-grid {
+    grid-template-columns: 1fr; /* Uma única coluna em telas muito pequenas */
+  }
+}
