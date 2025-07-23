@@ -1,0 +1,204 @@
+/* src/app/components/dashboard/dashboard.component.css */
+
+.dashboard-container-scout {
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #f0f0f0;
+}
+
+.dashboard-container-scout h1 {
+    text-align: center;
+    color: #00ffff; /* Azul ciano neon */
+    margin-bottom: 30px;
+    font-size: 3em;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6);
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(0, 255, 255, 0.9), 0 0 30px rgba(0, 255, 255, 0.7);
+    }
+}
+
+.no-favorites-message {
+    text-align: center;
+    color: #ffcc00; /* Amarelo de aviso */
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+/* Copie os estilos de grid e card do seu jogador-list.css aqui */
+/* Exemplo: */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.jogador-card {
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 255, 255, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+    border: 1px solid #2a2a2a;
+    position: relative;
+    overflow: hidden;
+}
+
+.jogador-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3), 0 0 30px rgba(0, 255, 255, 0.1);
+    border-color: #00e6e6;
+}
+
+.jogador-foto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #00e6e6;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    margin-bottom: 15px;
+}
+
+.jogador-detalhes {
+    margin-bottom: 15px;
+}
+
+.jogador-posicao {
+    background-color: #008080;
+    color: #e0f7fa;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.jogador-nome {
+    font-size: 1.5em;
+    color: #00ffff;
+    margin: 10px 0 0;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.6);
+}
+
+.jogador-numero {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #00e6e6;
+    color: #1a1a1a;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+/* Estilos para o checkbox "Favorito" dentro do card do Dashboard */
+.jogador-actions {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    z-index: 10;
+    background-color: rgba(26, 26, 26, 0.7);
+    padding: 3px 8px;
+    border-radius: 5px;
+    backdrop-filter: blur(2px);
+    transition: background-color 0.2s ease;
+}
+
+.comparar-checkbox-label { /* Renomeie esta classe para algo como .favorite-checkbox-label no dashboard se quiser manter a distinção clara */
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+    color: #99ffff;
+    cursor: pointer;
+    white-space: nowrap;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.jogador-card:hover .comparar-checkbox-label {
+    opacity: 1;
+}
+
+.comparar-checkbox-label input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #00ffff;
+    border-radius: 3px;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    margin-right: 5px;
+    position: relative;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.comparar-checkbox-label input[type="checkbox"]:checked {
+    background-color: #00ffff;
+    border-color: #00ffff;
+}
+
+.comparar-checkbox-label input[type="checkbox"]:checked::after {
+    content: '\2713';
+    font-size: 10px;
+    color: #1a1a1a;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+    }
+    .jogador-card {
+        padding: 15px;
+    }
+    .jogador-foto {
+        width: 80px;
+        height: 80px;
+    }
+    .jogador-nome {
+        font-size: 1.3em;
+    }
+    .jogador-posicao {
+        padding: 4px 10px;
+        font-size: 0.8em;
+    }
+    .jogador-numero {
+        font-size: 0.8em;
+        padding: 4px 8px;
+    }
+    .comparar-checkbox-label {
+        font-size: 0.7em;
+    }
+    .comparar-checkbox-label input[type="checkbox"] {
+        width: 12px;
+        height: 12px;
+    }
+    .comparar-checkbox-label input[type="checkbox"]:checked::after {
+        font-size: 8px;
+    }
+}

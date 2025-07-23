@@ -1,5 +1,35 @@
-{
-  "jogadores": [
+// src/app/components/dashboard/dashboard.component.ts
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Jogador } from '../jogador-list/jogador-list';
+import { FavoritosService } from '../../services/favoritos'; // CORRIGIDO O CAMINHO
+import { Subscription } from 'rxjs';
+import { JogadorDetalhesComponent } from '../jogador-detalhes/jogador-detalhes'; // CORRIGIDO O CAMINHO E IMPORTADO
+
+// JogadorCompararComponent foi removido daqui pois não é usado neste componente.
+// Se você for adicionar funcionalidade de comparação também no dashboard,
+// adicione-o novamente e inclua-o no array 'imports' abaixo.
+
+@Component({
+  selector: 'app-dashboard',
+  standalone: true,
+  imports: [
+    CommonModule,
+    JogadorDetalhesComponent // ADICIONADO AQUI para standalone
+  ],
+  templateUrl: './dashboard.html', // CORRIGIDO O CAMINHO
+  styleUrls: ['./dashboard.css'] // CORRIGIDO O CAMINHO
+})
+export class DashboardComponent implements OnInit, OnDestroy {
+  favoritedPlayers: Jogador[] = [];
+  private favoriteSubscription: Subscription | undefined;
+
+  // PROPRIEDADES PARA CONTROLAR O MODAL DE DETALHES - ADICIONADAS AQUI
+  showDetalhesModal: boolean = false;
+  jogadorSelecionado: Jogador | null = null;
+
+  allAvailablePlayers: Jogador[] = [
+    // Seus dados de jogadores estão ótimos aqui, com gols/assistencias como números!
     {
       "id": 1,
       "nome": "Lionel Messi",
@@ -8,8 +38,8 @@
       "posicao": "Atacante",
       "clube": "Inter Miami",
       "foto": "https://i.pinimg.com/1200x/de/0f/4f/de0f4f4319b6e190c17865e31dc4edef.jpg",
-      "gols": "15",
-      "assistencias": "14",
+      "gols": 15,
+      "assistencias": 14,
       "numeroCamisa": 10,
       "mapaCalor": "mapacalor/messi.png",
       "nota": 8.9,
@@ -25,8 +55,8 @@
       "posicao": "Atacante",
       "clube": "Al Nassr",
       "foto": "https://p4.wallpaperbetter.com/wallpaper/874/671/650/soccer-cristiano-ronaldo-portuguese-wallpaper-preview.jpg",
-      "gols": "45",
-      "assistencias": "9",
+      "gols": 45,
+      "assistencias": 9,
       "numeroCamisa": 7,
       "mapaCalor": "mapacalor/cr7.png",
       "nota": 8.7,
@@ -42,8 +72,8 @@
       "posicao": "Atacante",
       "clube": "Santos",
       "foto": "https://img.sofascore.com/api/v1/player/124712/image",
-      "gols": "37",
-      "assistencias": "16",
+      "gols": 37,
+      "assistencias": 16,
       "numeroCamisa": 10,
       "mapaCalor": "mapacalor/neymar.png",
       "nota": 8.5,
@@ -59,8 +89,8 @@
       "posicao": "Atacante",
       "clube": "Real Madrid",
       "foto": "https://img.sofascore.com/api/v1/player/826643/image",
-      "gols": "32",
-      "assistencias": "12",
+      "gols": 32,
+      "assistencias": 12,
       "numeroCamisa": 9,
       "mapaCalor": "mapacalor/mbappe.png",
       "nota": 9.1,
@@ -76,8 +106,8 @@
       "posicao": "Atacante",
       "clube": "Manchester City",
       "foto": "https://img.sofascore.com/api/v1/player/839956/image",
-      "gols": "42",
-      "assistencias": "6",
+      "gols": 42,
+      "assistencias": 6,
       "numeroCamisa": 9,
       "mapaCalor": "mapacalor/haaland.png",
       "nota": 9.0,
@@ -93,8 +123,8 @@
       "posicao": "Meio-campista",
       "clube": "Napoli",
       "foto": "https://img.sofascore.com/api/v1/player/70996/image",
-      "gols": "10",
-      "assistencias": "24",
+      "gols": 10,
+      "assistencias": 24,
       "numeroCamisa": 17,
       "mapaCalor": "mapacalor/debruyne.png",
       "nota": 8.8,
@@ -110,8 +140,8 @@
       "posicao": "Atacante",
       "clube": "Real Madrid",
       "foto": "https://img.sofascore.com/api/v1/player/868812/image",
-      "gols": "21",
-      "assistencias": "13",
+      "gols": 21,
+      "assistencias": 13,
       "numeroCamisa": 7,
       "mapaCalor": "mapacalor/Vini.png",
       "nota": 8.7,
@@ -127,8 +157,8 @@
       "posicao": "Meio-campista",
       "clube": "Milan",
       "foto": "https://img.sofascore.com/api/v1/player/15466/image",
-      "gols": "4",
-      "assistencias": "10",
+      "gols": 4,
+      "assistencias": 10,
       "numeroCamisa": 10,
       "mapaCalor": "mapacalor/modric.png",
       "nota": 8.3,
@@ -144,8 +174,8 @@
       "posicao": "Meio-campista",
       "clube": "Real Madrid",
       "foto": "https://img.sofascore.com/api/v1/player/991011/image",
-      "gols": "19",
-      "assistencias": "8",
+      "gols": 19,
+      "assistencias": 8,
       "numeroCamisa": 5,
       "mapaCalor": "mapacalor/belli.png",
       "nota": 8.9,
@@ -161,8 +191,8 @@
       "posicao": "Atacante",
       "clube": "Liverpool",
       "foto": "https://img.sofascore.com/api/v1/player/159665/image",
-      "gols": "29",
-      "assistencias": "11",
+      "gols": 29,
+      "assistencias": 11,
       "numeroCamisa": 11,
       "mapaCalor": "mapacalor/salah.png",
       "nota": 8.6,
@@ -229,8 +259,8 @@
       "posicao": "Lat. Direito",
       "clube": "Al-Hilal",
       "foto": "https://img.sofascore.com/api/v1/player/138892/image",
-      "gols": "4",
-      "assistencias": "7",
+      "gols": 4,
+      "assistencias": 7,
       "numeroCamisa": 2,
       "mapaCalor": "mapacalor/cancelo.png",
       "nota": 8.1,
@@ -246,8 +276,8 @@
       "posicao": "Lat. Esquerdo",
       "clube": "Liverpool",
       "foto": "https://img.sofascore.com/api/v1/player/262911/image",
-      "gols": "1",
-      "assistencias": "6",
+      "gols": 1,
+      "assistencias": 6,
       "numeroCamisa": 26,
       "mapaCalor": "mapacalor/robert.png",
       "nota": 8.0,
@@ -263,8 +293,8 @@
       "posicao": "Lat. Direito",
       "clube": "PSG",
       "foto": "https://img.sofascore.com/api/v1/player/814594/image",
-      "gols": "5",
-      "assistencias": "8",
+      "gols": 5,
+      "assistencias": 8,
       "numeroCamisa": 2,
       "mapaCalor": "mapacalor/hakimi.png",
       "nota": 8.2,
@@ -280,8 +310,8 @@
       "posicao": "Volante",
       "clube": "Manchester United",
       "foto": "https://img.sofascore.com/api/v1/player/122951/image",
-      "gols": "7",
-      "assistencias": "3",
+      "gols": 7,
+      "assistencias": 3,
       "numeroCamisa": 18,
       "mapaCalor": "mapacalor/casemiro.png",
       "nota": 8.0,
@@ -297,8 +327,8 @@
       "posicao": "Volante",
       "clube": "Manchester City",
       "foto": "https://img.sofascore.com/api/v1/player/827606/image",
-      "gols": "6",
-      "assistencias": "9",
+      "gols": 6,
+      "assistencias": 9,
       "numeroCamisa": 16,
       "mapaCalor": "mapacalor/Rodri.png",
       "nota": 8.8,
@@ -314,8 +344,8 @@
       "posicao": "Volante",
       "clube": "Bayern de Munique",
       "foto": "https://img.sofascore.com/api/v1/player/259117/image",
-      "gols": "4",
-      "assistencias": "10",
+      "gols": 4,
+      "assistencias": 10,
       "numeroCamisa": 6,
       "mapaCalor": "mapacalor/Kimmich.png",
       "nota": 8.4,
@@ -338,7 +368,7 @@
       "peDominante": "Direito",
       "altura": 1.91,
       "valorMercado": 35,
-      "mapaCalor": "mapacalor/alisson.png"
+      "mapaCalor": ''
     },
     {
       "id": 21,
@@ -348,8 +378,8 @@
       "posicao": "Atacante",
       "clube": "Inter Miami",
       "foto": "https://img.sofascore.com/api/v1/player/16943/image",
-      "gols": "19",
-      "assistencias": "7",
+      "gols": 19,
+      "assistencias": 7,
       "numeroCamisa": 9,
       "mapaCalor": "mapacalor/Suarez.png",
       "nota": 8.1,
@@ -365,8 +395,8 @@
       "posicao": "Meio-campista",
       "clube": "Club León",
       "foto": "https://img.sofascore.com/api/v1/player/107414/image",
-      "gols": "4",
-      "assistencias": "6",
+      "gols": 4,
+      "assistencias": 6,
       "numeroCamisa": 10,
       "mapaCalor": "mapacalor/james.png",
       "nota": 7.8,
@@ -382,8 +412,8 @@
       "posicao": "Atacante",
       "clube": "Flamengo",
       "foto": "https://img.sofascore.com/api/v1/player/358554/image",
-      "gols": "12",
-      "assistencias": "5",
+      "gols": 12,
+      "assistencias": 5,
       "numeroCamisa": 9,
       "mapaCalor": "mapacalor/gabigol.png",
       "nota": 7.9,
@@ -416,8 +446,8 @@
       "posicao": "Atacante",
       "clube": "Manchester United",
       "foto": "https://img.sofascore.com/api/v1/player/958380/image",
-      "gols": "6",
-      "assistencias": "4",
+      "gols": 6,
+      "assistencias": 4,
       "numeroCamisa": 21,
       "mapaCalor": "mapacalor/antony.png",
       "nota": 7.5,
@@ -433,8 +463,8 @@
       "posicao": "Atacante",
       "clube": "Barcelona",
       "foto": "https://img.sofascore.com/api/v1/player/1402912/image",
-      "gols": "7",
-      "assistencias": "11",
+      "gols": 7,
+      "assistencias": 11,
       "numeroCamisa": 27,
       "mapaCalor": "mapacalor/yamal.png",
       "nota": 8.2,
@@ -450,8 +480,8 @@
       "posicao": "Meio-campista",
       "clube": "Manchester City",
       "foto": "https://img.sofascore.com/api/v1/player/859765/image",
-      "gols": "18",
-      "assistencias": "11",
+      "gols": 18,
+      "assistencias": 11,
       "numeroCamisa": 47,
       "mapaCalor": "mapacalor/foden.png",
       "nota": 8.6,
@@ -467,8 +497,8 @@
       "posicao": "Atacante",
       "clube": "Barcelona",
       "foto": "https://img.sofascore.com/api/v1/player/831005/image",
-      "gols": "7",
-      "assistencias": "9",
+      "gols": 7,
+      "assistencias": 9,
       "numeroCamisa": 11,
       "mapaCalor": "mapacalor/raphinha.png",
       "nota": 8.0,
@@ -484,8 +514,8 @@
       "posicao": "Meio-campista",
       "clube": "Rosario Central",
       "foto": "https://img.sofascore.com/api/v1/player/30027/image",
-      "gols": "5",
-      "assistencias": "7",
+      "gols": 5,
+      "assistencias": 7,
       "numeroCamisa": 11,
       "mapaCalor": "mapacalor/dimaria.png",
       "nota": 8.0,
@@ -501,8 +531,8 @@
       "posicao": "Atacante",
       "clube": "Real Madrid",
       "foto": "https://img.sofascore.com/api/v1/player/1174937/image",
-      "gols": "11",
-      "assistencias": "2",
+      "gols": 11,
+      "assistencias": 2,
       "numeroCamisa": 16,
       "mapaCalor": "mapacalor/endrick.png",
       "nota": 8.1,
@@ -527,5 +557,36 @@
       "altura": 1.93,
       "valorMercado": 8
     }
-  ]
+  ];
+
+  constructor(public favoritosService: FavoritosService) {}
+
+  ngOnInit(): void {
+    this.favoriteSubscription = this.favoritosService.favoritedPlayerIds$.subscribe(() => {
+      this.loadFavoritedPlayers();
+    });
+    this.loadFavoritedPlayers();
+  }
+
+  ngOnDestroy(): void {
+    if (this.favoriteSubscription) {
+      this.favoriteSubscription.unsubscribe();
+    }
+  }
+
+  private loadFavoritedPlayers(): void {
+    this.favoritedPlayers = this.favoritosService.getFavoritedPlayers(this.allAvailablePlayers);
+  }
+
+  // >>>>>>>>>>>>> MÉTODOS E PROPRIEDADES DO MODAL DE DETALHES ADICIONADOS/CORRIGIDOS AQUI <<<<<<<<<<<<<
+
+  openDetalhesModal(jogador: Jogador): void {
+    this.jogadorSelecionado = jogador; // Atribui o jogador clicado
+    this.showDetalhesModal = true;     // Abre o modal
+  }
+
+  closeDetalhesModal(): void {
+    this.showDetalhesModal = false;    // Fecha o modal
+    this.jogadorSelecionado = null;    // Limpa o jogador selecionado
+  }
 }

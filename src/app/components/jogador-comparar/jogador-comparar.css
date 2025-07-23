@@ -1,0 +1,197 @@
+/* src/app/components/jogador-comparar/jogador-comparar.component.css */
+
+/* Estilos de Modal (reutilizados do jogador-detalhes.css) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+
+.modal-content {
+  background-color: #1a1a1a;
+  color: #cccccc;
+  border-radius: 10px;
+  padding: 30px;
+  width: 95%; /* Um pouco mais largo para acomodar duas colunas */
+  max-width: 1000px; /* Largura máxima maior */
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2),
+              0 0 20px rgba(0, 255, 255, 0.1);
+  animation: slideIn 0.3s ease-out;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #00e6e6;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  z-index: 2001;
+}
+
+.modal-close-btn:hover {
+  color: #00ffff;
+  transform: rotate(90deg);
+}
+
+h2 { /* Título principal do modal de comparação */
+  color: #00ffff;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+/* Layout de Comparação (Grid) */
+.comparacao-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+  gap: 30px; /* Espaço entre as colunas */
+}
+
+.jogador-col {
+  background-color: #222;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #333;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.05); /* Leve brilho interno */
+  text-align: center; /* Centraliza conteúdo dentro da coluna */
+}
+
+.jogador-foto-comparar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 15px auto;
+  border: 3px solid #00e6e6;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+}
+
+.jogador-nome-comparar {
+  font-size: 1.8rem;
+  color: #00ffff;
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px rgba(0, 255, 255, 0.4);
+}
+
+.jogador-col p {
+  font-size: 1rem;
+  color: #b0b0b0;
+  margin-bottom: 8px;
+}
+
+.jogador-col p strong {
+  color: #f0f0f0;
+}
+
+.jogador-col hr {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 20px 0;
+}
+
+.jogador-col h4 {
+  color: #00e6e6;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.jogador-col ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.jogador-col ul li {
+  background-color: #2b2b2b;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #3a3a3a;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+}
+
+.jogador-col ul li span {
+  font-weight: bold;
+  color: #00ffff;
+  font-size: 1.05rem;
+  text-shadow: 0 0 4px rgba(0, 255, 255, 0.3);
+}
+
+.mapa-calor-comparar {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.mapa-calor-comparar img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  border: 1px solid #444;
+}
+
+.no-selection-message {
+    text-align: center;
+    color: #ffcc00;
+    font-size: 1.2rem;
+    padding: 30px;
+    grid-column: 1 / -1; /* Ocupa todas as colunas */
+}
+
+
+/* Animações (reutilizadas) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 20px;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  .comparacao-grid {
+    grid-template-columns: 1fr; /* Uma coluna em telas menores (empilha) */
+    gap: 20px;
+  }
+  .jogador-nome-comparar {
+    font-size: 1.5rem;
+  }
+}

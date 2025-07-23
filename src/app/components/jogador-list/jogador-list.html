@@ -12,6 +12,14 @@
     Nenhum jogador encontrado com os filtros aplicados.
   </div>
 
+  <div class="comparar-btn-container" *ngIf="jogadoresParaComparar.length > 0">
+    <button
+      class="comparar-selecionados-btn "
+      [disabled]="jogadoresParaComparar.length !== 2"
+      (click)="openComparacaoModal()">
+      Comparar Selecionados ({{ jogadoresParaComparar.length }}/2)
+    </button>
+  </div>
   <div class="cards-grid">
     <div class="jogador-card" *ngFor="let jogador of jogadores" (click)="openDetalhesModal(jogador)">
       <img [src]="jogador.foto || 'assets/placeholder-jogador.png'" alt="Foto de {{ jogador.nome }}" class="jogador-foto">
@@ -20,6 +28,16 @@
         <h3 class="jogador-nome">{{ jogador.nome }}</h3>
       </div>
       <span *ngIf="jogador.numeroCamisa" class="jogador-numero">{{ jogador.numeroCamisa }}</span>
+
+      <div class="compare">
+        <label (click)="$event.stopPropagation()">
+          <input
+            type="checkbox"
+            [checked]="isJogadorSelecionadoParaComparacao(jogador)"
+            (change)="toggleComparacao(jogador)">
+          Comparar
+        </label>
+      </div>
     </div>
   </div>
 
@@ -28,4 +46,10 @@
     [jogador]="jogadorSelecionado"
     (fechar)="closeDetalhesModal()">
   </app-jogador-detalhes>
+
+  <app-jogador-comparar
+    *ngIf="showComparacaoModal"
+    [jogadores]="jogadoresParaComparar"
+    (fechar)="closeComparacaoModal()">
+  </app-jogador-comparar>
 </div>

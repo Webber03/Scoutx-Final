@@ -6,6 +6,14 @@
   min-height: calc(100vh - 60px); /* Ajuste conforme a altura do seu header/footer */
   color: #f0f0f0;
 }
+.compare{
+  align-items: left;
+  margin-top: 10px;
+  margin-right: 70px;
+  margin-bottom: 0%;
+  font-size: 11px;
+  color: #9edddd;
+}
 
 h1 {
   color: #00ffff; /* Azul neon para o título */
@@ -100,6 +108,51 @@ h1 {
   color: #ff4d4d; /* Cor de erro */
   font-size: 1.2em;
   padding: 50px;
+}
+.comparar-btn-container {
+    text-align: center; /* Centraliza o botão */
+    margin: 20px 0 30px 0; /* Espaço acima e abaixo do botão */
+    padding: 0 10px; /* Pequeno padding horizontal para garantir que não grude nas bordas em telas pequenas */
+}
+
+.comparar-selecionados-btn {
+    background-color: #00e6e6; /* Cor de fundo neon (cianoneon) */
+    color: #1a1a1a; /* Texto escuro para alto contraste */
+    border: none;
+    padding: 12px 30px; /* Mais padding para um botão mais proeminente */
+    border-radius: 30px; /* Bordas bem arredondadas (pílula) */
+    font-size: 1.15em; /* Fonte um pouco maior */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transições suaves para hover e disabled */
+    box-shadow: 0 0 18px rgba(0, 255, 255, 0.6); /* Sombra neon forte */
+    letter-spacing: 0.5px; /* Pequeno espaçamento entre letras */
+    text-transform: uppercase; /* Texto em maiúsculas */
+}
+
+.comparar-selecionados-btn:hover {
+    background-color: #00ffff; /* Brilho maior no hover */
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.9), 0 0 40px rgba(0, 255, 255, 0.7);
+    transform: translateY(-3px); /* Leve elevação no hover */
+}
+
+.comparar-selecionados-btn:disabled {
+    background-color: #333; /* Fundo cinza escuro quando desabilitado */
+    color: #777; /* Texto cinza claro */
+    cursor: not-allowed; /* Cursor de "não permitido" */
+    box-shadow: none; /* Sem sombra neon quando desabilitado */
+    transform: none; /* Sem elevação */
+    opacity: 0.6; /* Levemente transparente */
+}
+
+/* Opcional: Para telas menores, reduzir o tamanho do botão */
+@media (max-width: 600px) {
+    .comparar-selecionados-btn {
+        padding: 10px 20px;
+        font-size: 1em;
+        width: 90%; /* Ocupa mais largura em telas pequenas */
+        max-width: 300px; /* Limita a largura máxima */
+    }
 }
 
 /* Responsividade */

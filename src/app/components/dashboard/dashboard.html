@@ -1,0 +1,35 @@
+<!-- src/app/components/dashboard/dashboard.component.html -->
+<div class="dashboard-container-scout">
+  <h1>Jogadores Favoritos</h1>
+
+  <div *ngIf="favoritedPlayers.length === 0" class="no-favorites-message">
+    Você ainda não favoritou nenhum jogador.
+  </div>
+
+  <div class="cards-grid">
+    <div class="jogador-card" *ngFor="let jogador of favoritedPlayers" (click)="openDetalhesModal(jogador)">
+      <img [src]="jogador.foto || 'assets/placeholder-jogador.png'" alt="Foto de {{ jogador.nome }}" class="jogador-foto">
+      <div class="jogador-detalhes">
+        <span class="jogador-posicao">{{ jogador.posicao }}</span>
+        <h3 class="jogador-nome">{{ jogador.nome }}</h3>
+      </div>
+      <span *ngIf="jogador.numeroCamisa" class="jogador-numero">{{ jogador.numeroCamisa }}</span>
+
+      <div class="jogador-actions">
+        <label class="comparar-checkbox-label" (click)="$event.stopPropagation()">
+
+<input
+  type="checkbox"
+  [checked]="favoritosService.isFavorited(jogador.id!)"
+  (change)="favoritosService.toggleFavorite(jogador.id!)">
+        </label>
+      </div>
+    </div>
+  </div>
+
+<app-jogador-detalhes
+    *ngIf="showDetalhesModal"
+    [jogador]="jogadorSelecionado"
+    (fechar)="closeDetalhesModal()">
+  </app-jogador-detalhes> 
+</div>

@@ -1,51 +1,51 @@
-// src/app/components/jogador-detalhes/jogador-detalhes.component.ts
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { CommonModule, NgIf, NgForOf, DecimalPipe } from '@angular/common';
-
-// Definição da interface Jogador - AGORA CONSISTENTE COM JOGADOR-LIST.TS
-export interface Jogador {
-  id?: number;
-  nome: string;
-  idade?: number;
-  nacionalidade?: string;
-  posicao: string;
-  clube: string;
-  foto: string;
-  numeroCamisa?: number;
-  jogosSemSofrerGol?: number;
-  mediaDefesas?: number;
-  // ESTES CAMPOS DEVEM SER 'number' PARA CORRESPONDER AO QUE É PASSADO DE JOGADOR-LIST.TS
-  gols?: number;         // <-- CORRIGIDO para 'number'
-  assistencias?: number; // <-- CORRIGIDO para 'number'
-  mediaCortes?: number;
-  mediaInterceptacoes?: number;
-  mapaCalor: string;
-  nota?: number;         // Adicionado e tipado como number
-  peDominante?: string;  // Adicionado
-  altura?: number;       // Adicionado e tipado como number
-  valorMercado?: number; // Adicionado e tipado como number
-}
+// src/app/components/jogador-detalhes/jogador-detalhes.ts
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core'; // Adicionado OnDestroy
+import { CommonModule, DecimalPipe } from '@angular/common';
+import { Jogador } from '../jogador-list/jogador-list';
+import { FavoritosService } from '../../services/favoritos'; // Importe o serviço
+import { Subscription } from 'rxjs'; // Importe Subscription
 
 @Component({
-  selector: 'app-jogador-detalhes', // Seu seletor
+  selector: 'app-jogador-detalhes',
   standalone: true,
-  imports: [CommonModule, NgIf, NgForOf, DecimalPipe], // Adicionado explicitamente
+  imports: [CommonModule, DecimalPipe],
   templateUrl: './jogador-detalhes.html',
   styleUrls: ['./jogador-detalhes.css']
 })
-export class JogadorDetalhesComponent implements OnInit {
-  @Input() jogador: Jogador | null = null; // Recebe o objeto jogador completo
-  // MUITO IMPORTANTE: O @Output() DEVE SER 'fechar'
-  @Output() fechar = new EventEmitter<void>(); // <-- CORRIGIDO para 'fechar'
+export class JogadorDetalhesComponent implements OnInit, OnDestroy { // Implemente OnDestroy
+  @Input() jogador: Jogador | null = null;
+  @Output() fechar = new EventEmitter<void>();
 
-  constructor() {}
+  isFavorited: boolean = false;
+  private favoriteSubscription: Subscription | undefined; // Para desinscrever do Observable
+
+  constructor(private favoritosService: FavoritosService) {} // Injete o serviço
 
   ngOnInit(): void {
-    console.log('Dados do Jogador recebidos no Modal:', this.jogador); // Para depuração
+    // Inscreva-se para mudanças na lista de favoritos
+    this.favoriteSubscription = this.favoritosService.favoritedPlayerIds$.subscribe(ids => {
+      if (this.jogador && this.jogador.id !== undefined) {
+        this.isFavorited = ids.includes(this.jogador.id);
+      } else {
+        this.isFavorited = false;
+      }
+    });
   }
 
-  // Método para fechar o modal
+  ngOnDestroy(): void { // NOVO: Desinscrever para evitar vazamento de memória
+    if (this.favoriteSubscription) {
+      this.favoriteSubscription.unsubscribe();
+    }
+  }
+
+  toggleFavorite(): void {
+    if (this.jogador && this.jogador.id !== undefined) {
+      this.favoritosService.toggleFavorite(this.jogador.id);
+      // isFavorited será atualizado automaticamente via assinatura no ngOnInit
+    }
+  }
+
   closeModal(): void {
-    this.fechar.emit(); // Emite o evento para o componente pai
+    this.fechar.emit();
   }
 }

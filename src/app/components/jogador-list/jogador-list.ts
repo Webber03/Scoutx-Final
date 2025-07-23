@@ -3,11 +3,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; // Importar FormsModule para ngModel
 import { JogadorFiltros, JogadorFiltrosComponent } from '../jogador-filtros/jogador-filtros';
-// --- MUITO IMPORTANTE: Verifique o caminho e o nome do componente ---
-import { JogadorDetalhesComponent } from '../jogador-detalhes/jogador-detalhes'; // <-- MUITO IMPORTANTE!
+import { JogadorDetalhesComponent } from '../jogador-detalhes/jogador-detalhes';
+import { JogadorCompararComponent } from '../jogador-comparar/jogador-comparar'; // Importar o novo componente
 
-
+// Re-exportar a interface Jogador para ser usada em outros componentes
 export interface Jogador {
   id?: number;
   nome: string;
@@ -21,6 +22,8 @@ export interface Jogador {
   mediaDefesas?: number;
   gols?: number;
   assistencias?: number;
+  mediaCortes?: number;
+  mediaInterceptacoes?: number;
   mapaCalor: string;
   nota?: number;
   peDominante?: string;
@@ -34,9 +37,10 @@ export interface Jogador {
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule, // Adicionar FormsModule aqui
     JogadorFiltrosComponent,
-    // --- MUITO IMPORTANTE: Adicione JogadorDetalhesComponent aqui ---
-    JogadorDetalhesComponent // <-- MUITO IMPORTANTE!
+    JogadorDetalhesComponent,
+    JogadorCompararComponent // Adicionar o novo componente aqui
   ],
   templateUrl: './jogador-list.html',
   styleUrls: ['./jogador-list.css']
@@ -51,6 +55,10 @@ export class JogadorList implements OnInit {
 
   showDetalhesModal: boolean = false;
   jogadorSelecionado: Jogador | null = null;
+
+  // NOVAS PROPRIEDADES PARA COMPARAÇÃO
+  jogadoresParaComparar: Jogador[] = [];
+  showComparacaoModal: boolean = false;
 
   constructor(private http: HttpClient) {}
 
@@ -167,7 +175,7 @@ export class JogadorList implements OnInit {
         switch (filtros.assistencias) {
           case '0-5': return assistencias >= 0 && assistencias <= 5;
           case '5-10': return assistencias >= 5 && assistencias <= 10;
-          case '10-20': return assistencias >= 10 && assistencias <= 20;
+          case '10-20': return assistencias >= 10 && assistencias >= 20;
           case '20+': return assistencias >= 20;
           default: return true;
         }
@@ -233,5 +241,39 @@ export class JogadorList implements OnInit {
   closeDetalhesModal(): void {
     this.showDetalhesModal = false;
     this.jogadorSelecionado = null;
+  }
+
+  // NOVOS MÉTODOS PARA COMPARAÇÃO
+  toggleComparacao(jogador: Jogador): void {
+    const index = this.jogadoresParaComparar.findIndex(j => j.id === jogador.id);
+
+    if (index > -1) {
+      // Jogador já selecionado, remover
+      this.jogadoresParaComparar.splice(index, 1);
+    } else {
+      // Jogador não selecionado, adicionar se houver espaço
+      if (this.jogadoresParaComparar.length < 2) { // Limite de 2 jogadores para comparação
+        this.jogadoresParaComparar.push(jogador);
+      } else {
+        alert('Você pode comparar no máximo 2 jogadores por vez. Desmarque um jogador para selecionar outro.');
+      }
+    }
+  }
+
+  isJogadorSelecionadoParaComparacao(jogador: Jogador): boolean {
+    return this.jogadoresParaComparar.some(j => j.id === jogador.id);
+  }
+
+  openComparacaoModal(): void {
+    if (this.jogadoresParaComparar.length === 2) {
+      this.showComparacaoModal = true;
+    } else {
+      alert('Selecione exatamente 2 jogadores para comparar.');
+    }
+  }
+
+  closeComparacaoModal(): void {
+    this.showComparacaoModal = false;
+    this.jogadoresParaComparar = []; // Limpa a seleção após fechar o modal
   }
 }

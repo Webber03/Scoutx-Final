@@ -1,0 +1,70 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close-btn" (click)="closeModal()">
+      <i class="fas fa-times"></i>
+    </button>
+
+
+    <div class="comparacao-grid">
+      <div class="jogador-col" *ngIf="jogadores[0]">
+        <img [src]="jogadores[0].foto || 'assets/placeholder-jogador.png'" alt="Foto {{ jogadores[0].nome }}" class="jogador-foto-comparar">
+        <h3 class="jogador-nome-comparar">{{ jogadores[0].nome }}</h3>
+        <p><strong>Posição:</strong> {{ jogadores[0].posicao }}</p>
+        <p><strong>Clube:</strong> {{ jogadores[0].clube }}</p>
+        <p><strong>Nacionalidade:</strong> {{ jogadores[0].nacionalidade }}</p>
+        <p><strong>Idade:</strong> {{ jogadores[0].idade }} anos</p>
+        <p *ngIf="jogadores[0].numeroCamisa"><strong>Camisa:</strong> {{ jogadores[0].numeroCamisa }}</p>
+        <p *ngIf="jogadores[0].peDominante"><strong>Pé Dominante:</strong> {{ jogadores[0].peDominante }}</p>
+        <p *ngIf="jogadores[0].altura"><strong>Altura:</strong> {{ jogadores[0].altura | number:'1.2-2' }} m</p>
+        <p *ngIf="jogadores[0].valorMercado"><strong>Valor de Mercado:</strong> €{{ jogadores[0].valorMercado | number:'1.0-0' }}M</p>
+
+        <hr>
+        <h4>Estatísticas</h4>
+        <ul>
+          <li *ngIf="jogadores[0].gols !== undefined && jogadores[0].gols !== null">Gols: <span>{{ jogadores[0].gols }}</span></li>
+          <li *ngIf="jogadores[0].assistencias !== undefined && jogadores[0].assistencias !== null">Assistências: <span>{{ jogadores[0].assistencias }}</span></li>
+          <li *ngIf="jogadores[0].nota !== undefined && jogadores[0].nota !== null">Nota (Média): <span>{{ jogadores[0].nota | number:'1.1-1' }}</span></li>
+          <li *ngIf="jogadores[0].jogosSemSofrerGol !== undefined && jogadores[0].jogosSemSofrerGol !== null">Jogos S/ Sofrer Gol: <span>{{ jogadores[0].jogosSemSofrerGol }}</span></li>
+          <li *ngIf="jogadores[0].mediaDefesas !== undefined && jogadores[0].mediaDefesas !== null">Média de Defesas: <span>{{ jogadores[0].mediaDefesas | number:'1.1-1' }}</span></li>
+          <li *ngIf="jogadores[0].mediaCortes !== undefined && jogadores[0].mediaCortes !== null">Média de Cortes: <span>{{ jogadores[0].mediaCortes | number:'1.1-1' }}</span></li>
+          <li *ngIf="jogadores[0].mediaInterceptacoes !== undefined && jogadores[0].mediaInterceptacoes !== null">Média de Interceptações: <span>{{ jogadores[0].mediaInterceptacoes | number:'1.1-1' }}</span></li>
+        </ul>
+        <div *ngIf="jogadores[0].mapaCalor" class="mapa-calor-comparar">
+          <img [src]="jogadores[0].mapaCalor" alt="Mapa de Calor {{ jogadores[0].nome }}">
+        </div>
+      </div>
+
+      <div class="jogador-col" *ngIf="jogadores[1]">
+        <img [src]="jogadores[1].foto || 'assets/placeholder-jogador.png'" alt="Foto {{ jogadores[1].nome }}" class="jogador-foto-comparar">
+        <h3 class="jogador-nome-comparar">{{ jogadores[1].nome }}</h3>
+        <p><strong>Posição:</strong> {{ jogadores[1].posicao }}</p>
+        <p><strong>Clube:</strong> {{ jogadores[1].clube }}</p>
+        <p><strong>Nacionalidade:</strong> {{ jogadores[1].nacionalidade }}</p>
+        <p><strong>Idade:</strong> {{ jogadores[1].idade }} anos</p>
+        <p *ngIf="jogadores[1].numeroCamisa"><strong>Camisa:</strong> {{ jogadores[1].numeroCamisa }}</p>
+        <p *ngIf="jogadores[1].peDominante"><strong>Pé Dominante:</strong> {{ jogadores[1].peDominante }}</p>
+        <p *ngIf="jogadores[1].altura"><strong>Altura:</strong> {{ jogadores[1].altura | number:'1.2-2' }} m</p>
+        <p *ngIf="jogadores[1].valorMercado"><strong>Valor de Mercado:</strong> €{{ jogadores[1].valorMercado | number:'1.0-0' }}M</p>
+
+        <hr>
+        <h4>Estatísticas</h4>
+        <ul>
+          <li *ngIf="jogadores[1].gols !== undefined && jogadores[1].gols !== null">Gols: <span>{{ jogadores[1].gols }}</span></li>
+          <li *ngIf="jogadores[1].assistencias !== undefined && jogadores[1].assistencias !== null">Assistências: <span>{{ jogadores[1].assistencias }}</span></li>
+          <li *ngIf="jogadores[1].nota !== undefined && jogadores[1].nota !== null">Nota (Média): <span>{{ jogadores[1].nota | number:'1.1-1' }}</span></li>
+          <li *ngIf="jogadores[1].jogosSemSofrerGol !== undefined && jogadores[1].jogosSemSofrerGol !== null">Jogos S/ Sofrer Gol: <span>{{ jogadores[1].jogosSemSofrerGol }}</span></li>
+          <li *ngIf="jogadores[1].mediaDefesas !== undefined && jogadores[1].mediaDefesas !== null">Média de Defesas: <span>{{ jogadores[1].mediaDefesas | number:'1.1-1' }}</span></li>
+          <li *ngIf="jogadores[1].mediaCortes !== undefined && jogadores[1].mediaCortes !== null">Média de Cortes: <span>{{ jogadores[1].mediaCortes | number:'1.1-1' }}</span></li>
+          <li *ngIf="jogadores[1].mediaInterceptacoes !== undefined && jogadores[1].mediaInterceptacoes !== null">Média de Interceptações: <span>{{ jogadores[1].mediaInterceptacoes | number:'1.1-1' }}</span></li>
+        </ul>
+        <div *ngIf="jogadores[1].mapaCalor" class="mapa-calor-comparar">
+          <img [src]="jogadores[1].mapaCalor" alt="Mapa de Calor {{ jogadores[1].nome }}">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="jogadores.length < 2" class="no-selection-message">
+        Selecione 2 jogadores para iniciar a comparação.
+    </div>
+  </div>
+</div>
