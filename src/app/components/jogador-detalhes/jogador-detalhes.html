@@ -62,12 +62,12 @@
       <div class="jogador-stats">
         <h3>Estatísticas Principais</h3>
         <ul>
-          <ng-container *ngIf="jogador.posicao === 'Atacante' || jogador.posicao === 'Meio-campo'">
+          <ng-container *ngIf="jogador.posicao === 'Atacante' || jogador.posicao === 'Meio-campo'|| jogador.posicao === 'Volante'">
             <li *ngIf="jogador.gols !== undefined && jogador.gols !== null">Gols: <span>{{ jogador.gols }}</span></li>
             <li *ngIf="jogador.assistencias !== undefined && jogador.assistencias !== null">Assistências: <span>{{ jogador.assistencias }}</span></li>
           </ng-container>
 
-          <ng-container *ngIf="jogador.posicao === 'Zagueiro' || jogador.posicao === 'Volante'">
+          <ng-container *ngIf="jogador.posicao === 'Zagueiro' ">
             <li *ngIf="jogador.mediaCortes !== undefined && jogador.mediaCortes !== null">Média de Cortes: <span>{{ jogador.mediaCortes | number:'1.1-1' }}</span></li>
             <li *ngIf="jogador.mediaInterceptacoes !== undefined && jogador.mediaInterceptacoes !== null">Média de Interceptações: <span>{{ jogador.mediaInterceptacoes | number:'1.1-1' }}</span></li>
           </ng-container>
