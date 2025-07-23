@@ -28,7 +28,7 @@ export class Login {
 
     if (this.username === usuarioValido && this.password === senhaValida) {
       localStorage.setItem('isLoggedIn', 'true'); // Define o estado de logado
-      this.router.navigate(['/home']);
+      this.router.navigate(['/como-utilizar']);
     } else {
       this.mensagemErro = 'Usuário ou senha incorretos.';
     }
