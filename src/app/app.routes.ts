@@ -6,6 +6,7 @@ import { CadastroComponent } from './components/cadastro/cadastro';
 import { authGuard } from '../auth.guard/auth.guard'; // Importe o guarda
 import { DashboardComponent } from './components/dashboard/dashboard';
 import { ComoUtilizar } from './components/como-utilizar/como-utilizar';
+import { Sobre } from './components/sobre/sobre';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'home', component: JogadorList, canActivate: [authGuard] },
   { path: 'cadastro', component: CadastroComponent, canActivate: [authGuard] }, 
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
-  {path: 'como-utilizar', component: ComoUtilizar,canActivate: [authGuard]}
+  {path: 'como-utilizar', component: ComoUtilizar,canActivate: [authGuard]},
+  {path: 'sobre',component:Sobre,canActivate:[authGuard]}
 ];

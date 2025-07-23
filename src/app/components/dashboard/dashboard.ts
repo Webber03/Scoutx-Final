@@ -1,4 +1,4 @@
-// src/app/components/dashboard/dashboard.component.ts
+// src/app/components/dashboard/dashboard.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Jogador } from '../jogador-list/jogador-list';
@@ -578,15 +578,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.favoritedPlayers = this.favoritosService.getFavoritedPlayers(this.allAvailablePlayers);
   }
 
-  // >>>>>>>>>>>>> MÉTODOS E PROPRIEDADES DO MODAL DE DETALHES ADICIONADOS/CORRIGIDOS AQUI <<<<<<<<<<<<<
 
   openDetalhesModal(jogador: Jogador): void {
-    this.jogadorSelecionado = jogador; // Atribui o jogador clicado
-    this.showDetalhesModal = true;     // Abre o modal
+    this.jogadorSelecionado = jogador;
+    this.showDetalhesModal = true;     
   }
 
   closeDetalhesModal(): void {
-    this.showDetalhesModal = false;    // Fecha o modal
-    this.jogadorSelecionado = null;    // Limpa o jogador selecionado
+    this.showDetalhesModal = false;    
+    this.jogadorSelecionado = null;    
   }
 }
