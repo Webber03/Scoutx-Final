@@ -11,7 +11,11 @@
       "gols": "15",
       "assistencias": "14",
       "numeroCamisa": 10,
-      "mapaCalor": "mapacalor/messi.png"
+      "mapaCalor": "mapacalor/messi.png",
+      "nota": 8.9,
+      "peDominante": "Esquerdo",
+      "altura": 1.7,
+      "valorMercado": 35
     },
     {
       "id": 2,
@@ -24,7 +28,11 @@
       "gols": "45",
       "assistencias": "9",
       "numeroCamisa": 7,
-      "mapaCalor":"mapacalor/cr7.png"
+      "mapaCalor": "mapacalor/cr7.png",
+      "nota": 8.7,
+      "peDominante": "Direito",
+      "altura": 1.87,
+      "valorMercado": 25
     },
     {
       "id": 3,
@@ -37,7 +45,11 @@
       "gols": "37",
       "assistencias": "16",
       "numeroCamisa": 10,
-      "mapaCalor": "mapacalor/neymar.png"
+      "mapaCalor": "mapacalor/neymar.png",
+      "nota": 8.5,
+      "peDominante": "Direito",
+      "altura": 1.75,
+      "valorMercado": 45
     },
     {
       "id": 4,
@@ -50,7 +62,11 @@
       "gols": "32",
       "assistencias": "12",
       "numeroCamisa": 7,
-      "mapaCalor": "mapacalor/mbappe.png"
+      "mapaCalor": "mapacalor/mbappe.png",
+      "nota": 9.1,
+      "peDominante": "Direito",
+      "altura": 1.78,
+      "valorMercado": 180
     },
     {
       "id": 5,
@@ -63,7 +79,11 @@
       "gols": "42",
       "assistencias": "6",
       "numeroCamisa": 9,
-      "mapaCalor": "mapacalor/haaland.png"
+      "mapaCalor": "mapacalor/haaland.png",
+      "nota": 9.0,
+      "peDominante": "Esquerdo",
+      "altura": 1.94,
+      "valorMercado": 175
     },
     {
       "id": 6,
@@ -76,7 +96,11 @@
       "gols": "10",
       "assistencias": "24",
       "numeroCamisa": 17,
-      "mapaCalor": "mapacalor/debruyne.png"
+      "mapaCalor": "mapacalor/debruyne.png",
+      "nota": 8.8,
+      "peDominante": "Direito",
+      "altura": 1.81,
+      "valorMercado": 60
     },
     {
       "id": 7,
@@ -89,8 +113,11 @@
       "gols": "21",
       "assistencias": "13",
       "numeroCamisa": 7,
-      "mapaCalor": "mapacalor/Vini.png"
-
+      "mapaCalor": "mapacalor/Vini.png",
+      "nota": 8.7,
+      "peDominante": "Direito",
+      "altura": 1.76,
+      "valorMercado": 150
     },
     {
       "id": 8,
@@ -103,7 +130,11 @@
       "gols": "4",
       "assistencias": "10",
       "numeroCamisa": 10,
-      "mapaCalor": "mapacalor/modric.png"
+      "mapaCalor": "mapacalor/modric.png",
+      "nota": 8.3,
+      "peDominante": "Direito",
+      "altura": 1.72,
+      "valorMercado": 10
     },
     {
       "id": 9,
@@ -116,7 +147,11 @@
       "gols": "19",
       "assistencias": "8",
       "numeroCamisa": 5,
-      "mapaCalor": "mapacalor/belli.png"
+      "mapaCalor": "mapacalor/belli.png",
+      "nota": 8.9,
+      "peDominante": "Direito",
+      "altura": 1.86,
+      "valorMercado": 180
     },
     {
       "id": 10,
@@ -129,7 +164,11 @@
       "gols": "29",
       "assistencias": "11",
       "numeroCamisa": 11,
-      "mapaCalor": "mapacalor/salah.png"
+      "mapaCalor": "mapacalor/salah.png",
+      "nota": 8.6,
+      "peDominante": "Esquerdo",
+      "altura": 1.75,
+      "valorMercado": 65
     },
     {
       "id": 11,
@@ -142,7 +181,11 @@
       "numeroCamisa": 4,
       "mediaCortes": 4.3,
       "mediaInterceptacoes": 2.1,
-      "mapaCalor": "mapacalor/vvj.png"
+      "mapaCalor": "mapacalor/vvj.png",
+      "nota": 8.5,
+      "peDominante": "Direito",
+      "altura": 1.93,
+      "valorMercado": 35
     },
     {
       "id": 12,
@@ -154,7 +197,11 @@
       "foto": "https://img.sofascore.com/api/v1/player/70988/image",
       "numeroCamisa": 1,
       "jogosSemSofrerGol": 18,
-      "mediaDefesas": 3.1
+      "mediaDefesas": 3.1,
+      "nota": 8.7,
+      "peDominante": "Esquerdo",
+      "altura": 1.99,
+      "valorMercado": 45
     },
     {
       "id": 13,
@@ -167,7 +214,11 @@
       "numeroCamisa": 3,
       "mediaCortes": 3.7,
       "mediaInterceptacoes": 1.9,
-      "mapaCalor": "mapacalor/militao.png"
+      "mapaCalor": "mapacalor/militao.png",
+      "nota": 8.2,
+      "peDominante": "Direito",
+      "altura": 1.86,
+      "valorMercado": 60
     },
     {
       "id": 14,
@@ -180,7 +231,11 @@
       "gols": "4",
       "assistencias": "7",
       "numeroCamisa": 2,
-      "mapaCalor": "mapacalor/cancelo.png"
+      "mapaCalor": "mapacalor/cancelo.png",
+      "nota": 8.1,
+      "peDominante": "Direito",
+      "altura": 1.82,
+      "valorMercado": 40
     },
     {
       "id": 15,
@@ -193,7 +248,11 @@
       "gols": "1",
       "assistencias": "6",
       "numeroCamisa": 26,
-      "mapaCalor": "mapacalor/robert.png"
+      "mapaCalor": "mapacalor/robert.png",
+      "nota": 8.0,
+      "peDominante": "Esquerdo",
+      "altura": 1.78,
+      "valorMercado": 35
     },
     {
       "id": 16,
@@ -206,7 +265,11 @@
       "gols": "5",
       "assistencias": "8",
       "numeroCamisa": 2,
-      "mapaCalor": "mapacalor/hakimi.png"
+      "mapaCalor": "mapacalor/hakimi.png",
+      "nota": 8.2,
+      "peDominante": "Direito",
+      "altura": 1.81,
+      "valorMercado": 65
     },
     {
       "id": 17,
@@ -219,7 +282,11 @@
       "gols": "7",
       "assistencias": "3",
       "numeroCamisa": 18,
-      "mapaCalor": "mapacalor/casemiro.png"
+      "mapaCalor": "mapacalor/casemiro.png",
+      "nota": 8.0,
+      "peDominante": "Direito",
+      "altura": 1.85,
+      "valorMercado": 30
     },
     {
       "id": 18,
@@ -232,7 +299,11 @@
       "gols": "6",
       "assistencias": "9",
       "numeroCamisa": 16,
-      "mapaCalor": "mapacalor/Rodri.png"
+      "mapaCalor": "mapacalor/Rodri.png",
+      "nota": 8.8,
+      "peDominante": "Direito",
+      "altura": 1.90,
+      "valorMercado": 100
     },
     {
       "id": 19,
@@ -245,7 +316,11 @@
       "gols": "4",
       "assistencias": "10",
       "numeroCamisa": 6,
-      "mapaCalor": "mapacalor/Kimmich.png"
+      "mapaCalor": "mapacalor/Kimmich.png",
+      "nota": 8.4,
+      "peDominante": "Direito",
+      "altura": 1.76,
+      "valorMercado": 65
     },
     {
       "id": 20,
@@ -257,7 +332,11 @@
       "foto": "https://img.sofascore.com/api/v1/player/243609/image",
       "numeroCamisa": 1,
       "jogosSemSofrerGol": 17,
-      "mediaDefesas": 3.4
+      "mediaDefesas": 3.4,
+      "nota": 8.8,
+      "peDominante": "Direito",
+      "altura": 1.91,
+      "valorMercado": 35
     },
     {
       "id": 21,
@@ -270,7 +349,11 @@
       "gols": "19",
       "assistencias": "7",
       "numeroCamisa": 9,
-      "mapaCalor": "mapacalor/Suarez.png"
+      "mapaCalor": "mapacalor/Suarez.png",
+      "nota": 8.1,
+      "peDominante": "Direito",
+      "altura": 1.82,
+      "valorMercado": 8
     },
     {
       "id": 22,
@@ -283,7 +366,11 @@
       "gols": "4",
       "assistencias": "6",
       "numeroCamisa": 10,
-      "mapaCalor": "mapacalor/james.png"
+      "mapaCalor": "mapacalor/james.png",
+      "nota": 7.8,
+      "peDominante": "Esquerdo",
+      "altura": 1.80,
+      "valorMercado": 12
     },
     {
       "id": 23,
@@ -296,7 +383,11 @@
       "gols": "12",
       "assistencias": "5",
       "numeroCamisa": 9,
-      "mapaCalor": "mapacalor/gabigol.png"
+      "mapaCalor": "mapacalor/gabigol.png",
+      "nota": 7.9,
+      "peDominante": "Direito",
+      "altura": 1.78,
+      "valorMercado": 25
     },
     {
       "id": 24,
@@ -309,7 +400,11 @@
       "mediaCortes": 3.4,
       "mediaInterceptacoes": 1.8,
       "numeroCamisa": 5,
-      "mapaCalor": "mapacalor/marquinhos.png"
+      "mapaCalor": "mapacalor/marquinhos.png",
+      "nota": 8.3,
+      "peDominante": "Direito",
+      "altura": 1.83,
+      "valorMercado": 55
     },
     {
       "id": 25,
@@ -322,7 +417,11 @@
       "gols": "6",
       "assistencias": "4",
       "numeroCamisa": 21,
-      "mapaCalor": "mapacalor/antony.png"
+      "mapaCalor": "mapacalor/antony.png",
+      "nota": 7.5,
+      "peDominante": "Esquerdo",
+      "altura": 1.74,
+      "valorMercado": 35
     },
     {
       "id": 26,
@@ -335,7 +434,11 @@
       "gols": "7",
       "assistencias": "11",
       "numeroCamisa": 27,
-      "mapaCalor": "mapacalor/yamal.png"
+      "mapaCalor": "mapacalor/yamal.png",
+      "nota": 8.2,
+      "peDominante": "Esquerdo",
+      "altura": 1.78,
+      "valorMercado": 75
     },
     {
       "id": 27,
@@ -348,7 +451,11 @@
       "gols": "18",
       "assistencias": "11",
       "numeroCamisa": 47,
-      "mapaCalor": "mapacalor/foden.png"
+      "mapaCalor": "mapacalor/foden.png",
+      "nota": 8.6,
+      "peDominante": "Esquerdo",
+      "altura": 1.71,
+      "valorMercado": 110
     },
     {
       "id": 28,
@@ -361,7 +468,11 @@
       "gols": "7",
       "assistencias": "9",
       "numeroCamisa": 11,
-      "mapaCalor": "mapacalor/raphinha.png"
+      "mapaCalor": "mapacalor/raphinha.png",
+      "nota": 8.0,
+      "peDominante": "Esquerdo",
+      "altura": 1.76,
+      "valorMercado": 50
     },
     {
       "id": 29,
@@ -371,10 +482,14 @@
       "posicao": "Meio-campista",
       "clube": "Rosario Central",
       "foto": "https://img.sofascore.com/api/v1/player/30027/image",
-      "gols": "5", 
+      "gols": "5",
       "assistencias": "7",
       "numeroCamisa": 11,
-      "mapaCalor": "mapacalor/dimaria.png"
+      "mapaCalor": "mapacalor/dimaria.png",
+      "nota": 8.0,
+      "peDominante": "Esquerdo",
+      "altura": 1.80,
+      "valorMercado": 12
     },
     {
       "id": 30,
@@ -387,7 +502,11 @@
       "gols": "11",
       "assistencias": "2",
       "numeroCamisa": 16,
-      "mapaCalor": "mapacalor/endrick.png"
+      "mapaCalor": "mapacalor/endrick.png",
+      "nota": 8.1,
+      "peDominante": "Direito",
+      "altura": 1.73,
+      "valorMercado": 55
     }
   ]
 }

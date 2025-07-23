@@ -1,22 +1,22 @@
 /* src/app/components/jogador-filtros/jogador-filtros.component.css */
 .filtros-container {
-  background-color: #0c0c0c; /* Fundo mais escuro */
+  background-color: #0c0c0c;
   padding: 18px 25px;
   border-radius: 6px;
   margin-bottom: 35px;
-  color: #cccccc; /* Texto padrão mais suave */
+  color: #cccccc;
   border: 1px solid #1a1a1a;
-  box-shadow: 0 5px 15px rgba(0, 230, 230, 0.03), /* Brilho neon sutil, alpha reduzido */
+  box-shadow: 0 5px 15px rgba(0, 230, 230, 0.03),
               0 0 10px rgba(0, 230, 230, 0.02);
 }
 
 .filtros-container h3 {
-  color: #00e6e6; /* Ciano/Azul neon ligeiramente mais escuro */
+  color: #00e6e6;
   margin-bottom: 22px;
   font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  text-shadow: 0 0 4px rgba(0, 230, 230, 0.3); /* Sombra de texto neon, alpha reduzido */
+  text-shadow: 0 0 4px rgba(0, 230, 230, 0.3);
 }
 
 .form-row {
@@ -39,7 +39,7 @@
   padding: 8px 10px;
   border: 1px solid #333;
   border-radius: 4px;
-  background-color: #151515; /* Fundo de inputs/selects um pouco mais escuro */
+  background-color: #151515;
   color: #f0f0f0;
   font-size: 0.95rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -50,15 +50,14 @@
 }
 
 .form-control:focus {
-  border-color: #00e6e6; /* Ciano/Azul neon ligeiramente mais escuro ao focar */
-  box-shadow: 0 0 6px rgba(0, 230, 230, 0.5); /* Brilho ao focar, alpha reduzido */
+  border-color: #00e6e6;
+  box-shadow: 0 0 6px rgba(0, 230, 230, 0.5);
   outline: none;
-  background-color: #101010; /* Levemente mais escuro ao focar */
+  background-color: #101010;
 }
 
-/* Estilos específicos para select */
 .form-control option {
-  background-color: #151515; /* Fundo das opções um pouco mais escuro */
+  background-color: #151515;
   color: #f0f0f0;
 }
 
@@ -81,16 +80,47 @@
 
 .btn-secondary {
   background-color: #3a3a3a;
-  color: #00e6e6; /* Ciano/Azul neon ligeiramente mais escuro */
-  border: 1px solid #00e6e6; /* Ciano/Azul neon ligeiramente mais escuro */
-  box-shadow: 0 0 4px rgba(0, 230, 230, 0.3); /* Sombra neon sutil, alpha reduzido */
+  color: #00e6e6;
+  border: 1px solid #00e6e6;
+  box-shadow: 0 0 4px rgba(0, 230, 230, 0.3);
 }
 
 .btn-secondary:hover {
-  background-color: #00caca; /* Ciano/Azul neon um pouco mais escuro no hover */
+  background-color: #00caca;
   color: #0c0c0c;
   transform: translateY(-2px);
-  box-shadow: 0 0 10px rgba(0, 230, 230, 0.7); /* Brilho mais intenso no hover, alpha ajustado */
+  box-shadow: 0 0 10px rgba(0, 230, 230, 0.7);
+}
+
+/* NOVOS ESTILOS PARA O BOTÃO DE TOGGLE */
+.toggle-filters {
+  text-align: center;
+  margin-top: -10px; /* Ajuste para puxar para mais perto do form-row */
+  margin-bottom: 20px; /* Espaço antes dos botões de ação */
+}
+
+.toggle-filters .btn-link {
+  background: none;
+  border: none;
+  color: #00e6e6; /* Cor ciano/neon */
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  display: inline-flex; /* Para alinhar o texto e o ícone */
+  align-items: center;
+  gap: 8px; /* Espaçamento entre texto e ícone */
+}
+
+.toggle-filters .btn-link:hover {
+  color: #00caca;
+  background-color: rgba(0, 230, 230, 0.05); /* Um leve fundo no hover */
+}
+
+.toggle-filters .btn-link i {
+  transition: transform 0.3s ease; /* Animação para a rotação da seta */
 }
 
 /* Responsividade */

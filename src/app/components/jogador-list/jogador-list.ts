@@ -1,11 +1,13 @@
 // src/app/components/jogador-list/jogador-list.ts
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { JogadorFiltros, JogadorFiltrosComponent } from '../jogador-filtros/jogador-filtros'; // Caminho para JogadorFiltrosComponent
-import { JogadorDetalhesComponent } from '../jogador-detalhes/jogador-detalhes'; // Importa o NOVO componente modal
+import { JogadorFiltros, JogadorFiltrosComponent } from '../jogador-filtros/jogador-filtros';
+// --- MUITO IMPORTANTE: Verifique o caminho e o nome do componente ---
+import { JogadorDetalhesComponent } from '../jogador-detalhes/jogador-detalhes'; // <-- MUITO IMPORTANTE!
 
-// Definição da interface Jogador (DUPLICADA AQUI, conforme sua escolha)
+
 export interface Jogador {
   id?: number;
   nome: string;
@@ -17,19 +19,25 @@ export interface Jogador {
   numeroCamisa?: number;
   jogosSemSofrerGol?: number;
   mediaDefesas?: number;
-  gols?: string;
-  assistencias?: string;
-  mediaCortes?: number;
-  mediaInterceptacoes?: number;
+  gols?: number;
+  assistencias?: number;
   mapaCalor: string;
-  // Adicione outras propriedades do seu JSON que possam ser relevantes para exibição ou filtro
+  nota?: number;
+  peDominante?: string;
+  altura?: number;
+  valorMercado?: number;
 }
 
 @Component({
   selector: 'jogador-list',
   standalone: true,
-  // Adiciona JogadorDetalhesComponent aos imports
-  imports: [CommonModule, HttpClientModule, JogadorFiltrosComponent, JogadorDetalhesComponent],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    JogadorFiltrosComponent,
+    // --- MUITO IMPORTANTE: Adicione JogadorDetalhesComponent aqui ---
+    JogadorDetalhesComponent // <-- MUITO IMPORTANTE!
+  ],
   templateUrl: './jogador-list.html',
   styleUrls: ['./jogador-list.css']
 })
@@ -41,7 +49,6 @@ export class JogadorList implements OnInit {
   posicoesDisponiveis: string[] = [];
   clubesDisponiveis: string[] = [];
 
-  // PROPRIEDADES PARA O MODAL DE DETALHES
   showDetalhesModal: boolean = false;
   jogadorSelecionado: Jogador | null = null;
 
@@ -56,18 +63,24 @@ export class JogadorList implements OnInit {
           } else if (res && Array.isArray(res.jogadores)) {
             this.jogadoresOriginal = res.jogadores;
           } else {
-            console.error('Formato de resposta da API inesperado:', res);
             this.jogadoresOriginal = [];
           }
 
+          this.jogadoresOriginal = this.jogadoresOriginal.map(jogador => ({
+            ...jogador,
+            gols: typeof jogador.gols === 'string' ? parseInt(jogador.gols, 10) : (jogador.gols as number | undefined),
+            assistencias: typeof jogador.assistencias === 'string' ? parseInt(jogador.assistencias, 10) : (jogador.assistencias as number | undefined),
+            nota: typeof jogador.nota === 'string' ? parseFloat(jogador.nota) : (jogador.nota as number | undefined),
+            altura: typeof jogador.altura === 'string' ? parseFloat(jogador.altura) : (jogador.altura as number | undefined),
+            valorMercado: typeof jogador.valorMercado === 'string' ? parseFloat(jogador.valorMercado) : (jogador.valorMercado as number | undefined)
+          }));
+
           this.jogadores = [...this.jogadoresOriginal];
           this.extrairOpcoesFiltro(this.jogadoresOriginal);
-          console.log('Jogadores carregados (Original):', this.jogadoresOriginal);
-          console.log('Nacionalidades disponíveis:', this.nacionalidadesDisponiveis);
-          console.log('Posições disponíveis:', this.posicoesDisponiveis);
-          console.log('Clubes disponíveis:', this.clubesDisponiveis);
         },
-        error: (err) => console.error('Erro ao carregar jogadores:', err)
+        error: (err) => {
+          console.error('Erro ao carregar jogadores:', err);
+        }
       });
   }
 
@@ -121,19 +134,104 @@ export class JogadorList implements OnInit {
       );
     }
 
+    if (filtros.idade) {
+      jogadoresFiltrados = jogadoresFiltrados.filter(jogador => {
+        if (jogador.idade === undefined || jogador.idade === null) return false;
+        const idade = jogador.idade;
+        switch (filtros.idade) {
+          case '15-20': return idade >= 15 && idade <= 20;
+          case '20-25': return idade >= 20 && idade <= 25;
+          case '25-30': return idade >= 25 && idade <= 30;
+          case '30+': return idade >= 30;
+          default: return true;
+        }
+      });
+    }
+
+    if (filtros.gols) {
+      jogadoresFiltrados = jogadoresFiltrados.filter(jogador => {
+        const gols = typeof jogador.gols === 'number' ? jogador.gols : 0;
+        switch (filtros.gols) {
+          case '0-5': return gols >= 0 && gols <= 5;
+          case '5-10': return gols >= 5 && gols <= 10;
+          case '10-20': return gols >= 10 && gols <= 20;
+          case '20+': return gols >= 20;
+          default: return true;
+        }
+      });
+    }
+
+    if (filtros.assistencias) {
+      jogadoresFiltrados = jogadoresFiltrados.filter(jogador => {
+        const assistencias = typeof jogador.assistencias === 'number' ? jogador.assistencias : 0;
+        switch (filtros.assistencias) {
+          case '0-5': return assistencias >= 0 && assistencias <= 5;
+          case '5-10': return assistencias >= 5 && assistencias <= 10;
+          case '10-20': return assistencias >= 10 && assistencias <= 20;
+          case '20+': return assistencias >= 20;
+          default: return true;
+        }
+      });
+    }
+
+    if (filtros.nota) {
+      jogadoresFiltrados = jogadoresFiltrados.filter(jogador => {
+        if (jogador.nota === undefined || jogador.nota === null) return false;
+        const nota = jogador.nota;
+        const [minStr, maxStr] = filtros.nota!.split('-');
+        const min = parseFloat(minStr);
+        const max = maxStr ? parseFloat(maxStr) : Infinity;
+        return nota >= min && nota <= max;
+      });
+    }
+
+    if (filtros.peDominante) {
+      jogadoresFiltrados = jogadoresFiltrados.filter(jogador =>
+        jogador.peDominante === filtros.peDominante
+      );
+    }
+
+    if (filtros.altura) {
+      jogadoresFiltrados = jogadoresFiltrados.filter(jogador => {
+        if (jogador.altura === undefined || jogador.altura === null) return false;
+        const altura = jogador.altura;
+        const [minStr, maxStr] = filtros.altura!.replace('m', '').split('-');
+        const min = parseFloat(minStr);
+        const max = maxStr ? parseFloat(maxStr) : Infinity;
+        return altura >= min && altura <= max;
+      });
+    }
+
+    if (filtros.numeroCamisa) {
+      const numeroCamisaFiltro = parseInt(filtros.numeroCamisa, 10);
+      if (!isNaN(numeroCamisaFiltro)) {
+        jogadoresFiltrados = jogadoresFiltrados.filter(jogador =>
+          jogador.numeroCamisa === numeroCamisaFiltro
+        );
+      }
+    }
+
+    if (filtros.valorMercado) {
+      jogadoresFiltrados = jogadoresFiltrados.filter(jogador => {
+        if (jogador.valorMercado === undefined || jogador.valorMercado === null) return false;
+        const valor = jogador.valorMercado;
+        const [minStr, maxStr] = filtros.valorMercado!.replace('M', '').split('-');
+        const min = parseFloat(minStr);
+        const max = maxStr ? parseFloat(maxStr) : Infinity;
+        return valor >= min && valor <= max;
+      });
+    }
+
     this.jogadores = jogadoresFiltrados;
-    console.log('Filtros aplicados:', filtros);
-    console.log('Jogadores filtrados:', this.jogadores);
   }
 
-  // NOVOS MÉTODOS PARA CONTROLAR O MODAL DE DETALHES
   openDetalhesModal(jogador: Jogador): void {
-    this.jogadorSelecionado = jogador; // Atribui o jogador clicado à propriedade
-    this.showDetalhesModal = true; // Define como true para exibir o modal
+    this.jogadorSelecionado = jogador;
+    this.showDetalhesModal = true;
   }
 
   closeDetalhesModal(): void {
-    this.showDetalhesModal = false; // Define como false para esconder o modal
-    this.jogadorSelecionado = null; // Limpa o jogador selecionado
+    this.showDetalhesModal = false;
+    this.jogadorSelecionado = null;
   }
 }

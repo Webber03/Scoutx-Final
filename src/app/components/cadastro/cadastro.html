@@ -1,30 +1,39 @@
-<div class="modal-backdrop d-flex justify-content-center align-items-center">
-  <div class="modal-content p-4 bg-white rounded shadow" style="width: 400px;">
-    <h5 class="mb-3">Cadastre-se</h5>
+<div class="modal-backdrop">
+  <form class="modal-content" #cadastroForm="ngForm">
+    <h3 class="modal-title" style="color: #00e6e6;">Cadastro - ScoutX</h3>
 
-    <div class="mb-3">
-      <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="nome">
+    <div class="form-group">
+      <input type="text" [(ngModel)]="nome" name="nome" placeholder="Nome completo" required>
     </div>
-    <div class="mb-3">
-      <input type="email" class="form-control" placeholder="E-mail" [(ngModel)]="email">
+    <div class="form-group">
+      <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required email>
     </div>
-    <div class="mb-3">
-      <input type="password" class="form-control" placeholder="Senha" [(ngModel)]="senha">
+    <div class="form-group">
+      <input type="password" [(ngModel)]="senha" name="senha" placeholder="Senha" required minlength="6">
     </div>
-    <div class="mb-3">
-      <input type="password" class="form-control" placeholder="Confirmar senha" [(ngModel)]="confirmarSenha">
+    <div class="form-group">
+      <input type="password" [(ngModel)]="confirmarSenha" name="confirmarSenha" placeholder="Confirmar Senha" required>
     </div>
 
-    <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox" id="termosUsoCheckbox" [(ngModel)]="termosAceitos">
-      <label class="form-check-label" for="termosUsoCheckbox">
-        Eu li e aceito os <a href="#" class="text-primary">termos de uso</a>
-      </label>
+    <div *ngIf="senha.length && confirmarSenha.length < 6" class="error-message">
+      Minimo 6 caracteres.
     </div>
-    
-    <div class="text-end">
-      <button class="btn btn-secondary me-2" (click)="fechar()">Cancelar</button>
-      <button  class="btn btn-secondary me-2" (click)="enviar()" [disabled]="!termosAceitos">Cadastrar</button>
+    <div *ngIf="senha !== confirmarSenha && confirmarSenha.length > 0" class="error-message">
+      As senhas não coincidem.
     </div>
-  </div>
+
+    <div class="terms-checkbox">
+      <input type="checkbox" id="terms" [(ngModel)]="termosAceitos" name="termosAceitos" required>
+      <label for="terms">Eu aceito os <a href="">termos de uso</a></label>
+    </div>
+
+    <button
+      class="btn-register"
+      [disabled]="cadastroForm.invalid || senha !== confirmarSenha || !termosAceitos"
+      (click)="enviar()"
+    >
+      Registrar
+    </button>
+    <button type="button" class="btn-close-modal" (click)="fechar()">Fechar</button>
+  </form>
 </div>

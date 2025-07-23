@@ -7,23 +7,19 @@
   <nav class="sidebar-nav">
     <ul>
       <li>
+        <a routerLink="/jogadores" routerLinkActive="active-link">
+          <i class="fas fa-users" (click)="home()"></i> Jogadores
+        </a>
+      </li>
+      <li>
         <a routerLink="/home" routerLinkActive="active-link">
           <i class="fas fa-home"></i> Dashboard
         </a>
       </li>
-      <li>
-        <a routerLink="/jogadores" routerLinkActive="active-link">
-          <i class="fas fa-users"></i> Jogadores
-        </a>
-      </li>
+
       <li>
         <a routerLink="/times" routerLinkActive="active-link">
           <i class="fas fa-shield-alt"></i> Times
-        </a>
-      </li>
-      <li>
-        <a routerLink="/configuracoes" routerLinkActive="active-link">
-          <i class="fas fa-cog"></i> Configurações
         </a>
       </li>
       </ul>

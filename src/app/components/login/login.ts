@@ -1,4 +1,4 @@
-// Login.ts
+// src/app/components/login/login.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -21,12 +21,13 @@ export class Login {
   constructor(private router: Router) { }
 
   login() {
-    const usuarioValido = 'usuario'; 
-    const senhaValida = 'login123';   
+    const usuarioValido = 'usuario';
+    const senhaValida = 'login123';
 
     this.mensagemErro = null;
 
     if (this.username === usuarioValido && this.password === senhaValida) {
+      localStorage.setItem('isLoggedIn', 'true'); // Define o estado de logado
       this.router.navigate(['/home']);
     } else {
       this.mensagemErro = 'Usuário ou senha incorretos.';

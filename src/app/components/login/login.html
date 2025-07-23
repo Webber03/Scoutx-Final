@@ -1,44 +1,34 @@
-<!-- Login.html -->
-<div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
-    <div class="row w-75 shadow rounded overflow-hidden">
-      <div class="col-md-6 d-none d-md-block p-0">
-        <img src="login.png" alt="Login Image" class="img-fluid h-100" style="object-fit: cover;">
-      </div>
-  
-      <div class="col-md-6 bg-white p-5">
-        
-        <h2 class="fw-bold mt-4" style="text-align: center; margin-bottom: 25px;">ScoutX</h2>
-        <p class="text-muted">Bem-vindo de volta, você fez falta!</p>
-  
-        <div class="form-group mb-3">
-          <input type="text" class="form-control" [(ngModel)]="username" placeholder="Login">
-        </div>
-        <div class="form-group mb-3">
-          <input type="password" class="form-control" [(ngModel)]="password" placeholder="Senha">
-        </div>
-  
-        <!-- NOVO: Exibe a mensagem de erro se ela existir -->
-        <div *ngIf="mensagemErro" class="alert alert-danger text-center mb-3" role="alert">
-          {{ mensagemErro }}
-        </div>
-  
-        <div class="text-end mb-3">
-          <a href="#" class="text-muted">Recuperar senha</a>
-        </div>
-  
-        <button class="btn btn-danger w-100 mb-3" (click)="login()">Login</button>
-  
-        <div class="text-center text-muted mb-2">Ou continue com </div>
-            <div class="d-flex justify-content-center gap-3">
-            <button></button>
-            <button></button>   
-            <button></button>
-          </div>
-            <div class="text-center text-muted mt-3">Não tem uma conta?  <button (click)="cadastro()">Cadastre-se</button></div>
-          <div class="d-flex justify-content-center gap-3">
-          </div>
-      </div>
+<div class="login-container">
+  <form class="login-card" #loginForm="ngForm">
+    <h2 class="scoutx-title" style="color: #00e6e6;">ScoutX</h2>
+    <p class="welcome-text">Bem-vindo de volta!</p>
+
+    <input [(ngModel)]="username" type="text" name="username" placeholder="Usuário" required>
+    <input [(ngModel)]="password" type="password" name="password" placeholder="Senha" required>
+
+    <div *ngIf="mensagemErro" class="erro">{{ mensagemErro }}</div>
+
+    <button
+      class="btn-login-standard"
+      [class.btn-login-active]="loginForm.valid"
+      (click)="login()"
+      [disabled]="loginForm.invalid"
+    >
+      Login
+    </button>
+
+    <p class="separator-text">Ou continue com </p>
+    <div class="social-buttons">
+      <button type="button" class="btn-social-standard"><i class="fab fa-google"></i></button>
+      <button type="button" class="btn-social-standard"><i class="fab fa-facebook-f"></i></button>
+      <button type="button" class="btn-social-standard"><i class="fab fa-apple"></i></button>
     </div>
-  </div>
-  
+
+    <p class="cadastro-link-text">
+      Não tem uma conta?
+      <span (click)="cadastro()" class="link-cadastro">Cadastre-se</span>
+    </p>
+  </form>
+
   <cadastro-modal *ngIf="mostrarModalCadastro" [fechar]="fecharModalCadastro.bind(this)"></cadastro-modal>
+</div>

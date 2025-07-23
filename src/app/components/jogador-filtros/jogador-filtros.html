@@ -32,6 +32,79 @@
         <option *ngFor="let clb of clubesDisponiveis" [value]="clb">{{ clb }}</option>
       </select>
     </div>
+
+    <ng-container *ngIf="mostrarMaisFiltros">
+      <div class="form-group">
+        <label for="filterIdade">Idade:</label>
+        <select id="filterIdade" class="form-control" [(ngModel)]="idadeSelecionada" (change)="aplicarFiltros()">
+          <option value="">Todas</option>
+          <option *ngFor="let faixa of faixasIdadeDisponiveis" [value]="faixa">{{ faixa }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="filterGols">Gols:</label>
+        <select id="filterGols" class="form-control" [(ngModel)]="golsSelecionados" (change)="aplicarFiltros()">
+          <option value="">Todos</option>
+          <option *ngFor="let faixa of faixasGolsDisponiveis" [value]="faixa">{{ faixa }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="filterAssistencias">Assistências:</label>
+        <select id="filterAssistencias" class="form-control" [(ngModel)]="assistenciasSelecionadas" (change)="aplicarFiltros()">
+          <option value="">Todos</option>
+          <option *ngFor="let faixa of faixasAssistenciasDisponiveis" [value]="faixa">{{ faixa }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="filterNota">Nota:</label>
+        <select id="filterNota" class="form-control" [(ngModel)]="notaSelecionada" (change)="aplicarFiltros()">
+          <option value="">Todas</option>
+          <option *ngFor="let faixa of faixasNotaDisponiveis" [value]="faixa">{{ faixa }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="filterPeDominante">Pé Dominante:</label>
+        <select id="filterPeDominante" class="form-control" [(ngModel)]="peDominanteSelecionado" (change)="aplicarFiltros()">
+          <option value="">Todos</option>
+          <option *ngFor="let pe of pesDominantesDisponiveis" [value]="pe">{{ pe }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="filterAltura">Altura:</label>
+        <select id="filterAltura" class="form-control" [(ngModel)]="alturaSelecionada" (change)="aplicarFiltros()">
+          <option value="">Todas</option>
+          <option *ngFor="let faixa of faixasAlturaDisponiveis" [value]="faixa">{{ faixa }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="filterNumeroCamisa">Nº Camisa:</label>
+        <input type="number" id="filterNumeroCamisa" class="form-control"
+               [(ngModel)]="numeroCamisaBuscado" (input)="aplicarFiltros()"
+               placeholder="Ex: 10">
+      </div>
+
+      <div class="form-group">
+        <label for="filterValorMercado">Valor de Mercado:</label>
+        <select id="filterValorMercado" class="form-control" [(ngModel)]="valorMercadoSelecionado" (change)="aplicarFiltros()">
+          <option value="">Todos</option>
+          <option *ngFor="let faixa of faixasValorMercadoDisponiveis" [value]="faixa">{{ faixa }}</option>
+        </select>
+      </div>
+
+    </ng-container>
+  </div>
+
+  <div class="toggle-filters">
+    <button class="btn btn-link" (click)="toggleMaisFiltros()">
+      {{ mostrarMaisFiltros ? 'Menos filtros' : 'Mais filtros' }}
+      <i class="fas" [class.fa-chevron-up]="mostrarMaisFiltros" [class.fa-chevron-down]="!mostrarMaisFiltros"></i>
+    </button>
   </div>
 
   <div class="buttons-row">

@@ -3,12 +3,11 @@ import { Routes } from '@angular/router';
 import { JogadorList } from './components/jogador-list/jogador-list';
 import { Login } from './components/login/login';
 import { CadastroComponent } from './components/cadastro/cadastro';
+import { authGuard } from './auth.guard'; // Importe o guarda
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: Login },
-  { path: 'home', component: JogadorList },
-  { path: 'cadastro', component: CadastroComponent },
-  // Removida a rota '{path: 'filtros', component: JogadorFiltrosComponent}'
-  // Removida toda a estrutura de rotas aninhadas com MainLayoutComponent
+  { path: 'home', component: JogadorList, canActivate: [authGuard] }, // Protegida
+  { path: 'cadastro', component: CadastroComponent, canActivate: [authGuard] }, // Protegida
 ];
